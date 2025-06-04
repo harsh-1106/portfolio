@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Harsh Sheth - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-bg: #0B0C10;
+      --nav-bg: #1F2833cc;
+      --accent: #66FCF1;
+      --accent2: #45A29E;
+      --accent3: #B6FCF1;
+      --text-main: #C5C6C7;
+      --white: #fff;
+    }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: var(--accent3);
+      transition: color 0.3s;
+    }
+    a:hover, a:focus {
+      color: var(--accent);
+      outline: none;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+
+    /* NAVBAR WITH LOGO, NAME, AND LINKS */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      width: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px) saturate(170%);
+      -webkit-backdrop-filter: blur(14px) saturate(170%);
+      box-shadow: 0 2px 24px 0 rgba(70,252,241,0.09);
+      border-bottom: 1.5px solid rgba(102,252,241,0.12);
+      transition: background 0.3s;
+    }
+    .navbar-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.7rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 160px;
+    }
+    .logo-hs-svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+      box-shadow: 0 2px 16px rgba(70,252,241,0.10);
+    }
+    .logo-hs-svg svg {
+      width: 38px;
+      height: 38px;
+      display: block;
+    }
+    .brand-text {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-left: 0.2rem;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px #45a29e33);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      margin-left: auto;
+    }
+    .nav-links li {
+      font-weight: 600;
+      font-size: 1.04rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--accent3);
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      position: relative;
+      transition: color 0.2s;
+      z-index: 1;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      overflow: visible;
+    }
+    .nav-links a::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: -2px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent3) 0%, var(--accent2) 100%);
+      opacity: 0;
+      transform: scaleX(0.5);
+      transition: opacity 0.19s, transform 0.19s;
+      z-index: 0;
+      box-shadow: 0 0 6px 0 var(--accent3), 0 0 12px 0 var(--accent2);
+    }
+    .nav-links a:hover::after, .nav-links a:focus::after, .nav-links a.active::after, .nav-links a[aria-current="page"]::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    .nav-links a.active, .nav-links a[aria-current="page"] {
+      color: var(--accent);
+    }
+    .cv-icon {
+      width: 1.1em;
+      height: 1.1em;
+      vertical-align: -0.15em;
+      margin-right: 0.4em;
+      fill: var(--accent2);
+      transition: fill 0.2s;
+    }
+    .nav-links a:hover .cv-icon,
+    .nav-links a.active .cv-icon {
+      fill: var(--accent);
+    }
+    @media (max-width: 700px) {
+      .navbar-content {
+        padding: 0.5rem 0.7rem;
+      }
+      .nav-links {
+        gap: 1.1rem;
+      }
+      .nav-links li {
+        font-size: 0.96rem;
+      }
+      .brand-text {
+        font-size: 1.1rem;
+      }
+      .logo-hs-svg {
+        width: 32px;
+        height: 32px;
+      }
+      .logo-hs-svg svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* HERO SECTION */
+    header.hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center center / cover no-repeat fixed;
+      color: var(--accent3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11,12,16,0.85) 0%, rgba(31,40,51,0.85) 100%);
+      z-index: 0;
+    }
+    header.hero > * { position: relative; z-index: 1; }
+    .animated-name {
+      font-family: 'Inter', Arial, sans-serif;
+      font-weight: 800;
+      font-size: 3.2rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-move 3s linear infinite, breathe 2.5s ease-in-out infinite alternate;
+      letter-spacing: 2px;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+    @keyframes gradient-move {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes breathe {
+      0%   { font-variation-settings: "wght" 800; transform: scale(1);}
+      50%  { font-variation-settings: "wght" 900; transform: scale(1.06);}
+      100% { font-variation-settings: "wght" 800; transform: scale(1);}
+    }
+    .svg-underline {
+      display: block;
+      margin: 0.5rem auto 1.5rem auto;
+      width: 200px;
+      height: 24px;
+    }
+    .svg-underline path {
+      stroke: var(--accent);
+      stroke-width: 3;
+      fill: none;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawline 2s ease-out forwards;
+    }
+    @keyframes drawline {
+      to { stroke-dashoffset: 0; }
+    }
+    .subtitle-slide {
+      min-height: 2.2em;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent3);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s;
+      position: relative;
+      height: 2.2em;
+    }
+    .subtitle-slide span {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.6s;
+      will-change: opacity;
+    }
+    .subtitle-slide span.active {
+      opacity: 1;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    .profile-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 6px solid var(--text-main);
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+    .profile-photo:hover, .profile-photo:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      font-size: 2rem;
+      color: var(--accent2);
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      user-select: none;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    main {
+      max-width: 900px;
+      margin: 3rem auto 6rem;
+      padding: 0 2rem;
+    }
+    section#about {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-bottom: 4rem;
+      background: var(--nav-bg);
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(70,252,241,0.08);
+      overflow: hidden;
+      color: var(--text-main);
+      min-height: 350px;
+      border-left: 8px solid var(--accent);
+    }
+    section#about .about-photo {
+      flex: 1 1 38%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--nav-bg);
+      min-width: 200px;
+      max-width: 340px;
+      padding: 0;
+    }
+    section#about .about-photo img {
+      width: 90%;
+      height: auto;
+      max-width: 240px;
+      min-width: 160px;
+      border-radius: 8px;
+      box-shadow: 0 6px 24px rgba(70,252,241,0.15);
+      border: 3px solid var(--accent2);
+      background: var(--dark-bg);
+    }
+    section#about .about-content {
+      flex: 1 1 62%;
+      padding: 42px 36px 42px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--nav-bg);
+      border-left: 1px solid var(--accent2);
+    }
+    section#about .about-content h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      line-height: 1.15;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    section#about .about-content p {
+      font-size: 1.08rem;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    @media (max-width: 900px) {
+      section#about {
+        flex-direction: column;
+        max-width: 98vw;
+        margin: 40px 1vw 0 1vw;
+        min-height: unset;
+        border-left: none;
+        border-top: 8px solid var(--accent);
+      }
+      section#about .about-photo, section#about .about-content {
+        max-width: 100%;
+        padding: 0;
+      }
+      section#about .about-content {
+        padding: 28px 18px 28px 18px;
+        border-left: none;
+        border-top: 1px solid var(--accent2);
+      }
+      section#about .about-photo img {
+        margin: 24px 0 0 0;
+      }
+    }
+    @media (max-width: 600px) {
+      section#about .about-content h2 {
+        font-size: 1.3rem;
+      }
+      section#about .about-content {
+        padding: 14px 4vw 20px 4vw;
+      }
+      section#about .about-photo img {
+        max-width: 80vw;
+      }
+    }
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .project-card {
+      background: var(--nav-bg);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(.2,1,.22,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      box-shadow: 0 12px 40px rgba(70, 180, 170, 0.3);
+      transform: translateY(-8px) scale(1.03);
+    }
+    .project-card h3 {
+      margin-bottom: 0.75rem;
+      color: var(--accent3);
+    }
+    .project-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .project-card a {
+      font-weight: 600;
+    }
+    section#cv {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    section#cv h2 {
+      font-size: 2rem;
+      color: var(--accent3);
+      margin-bottom: 1.5rem;
+    }
+    .btn-cv-download {
+      background-color: var(--accent2);
+      color: var(--dark-bg);
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+    .btn-cv-download svg {
+      width: 1.4em;
+      height: 1.4em;
+      fill: var(--accent);
+      margin-right: 0.3em;
+      transition: fill 0.2s;
+    }
+    .btn-cv-download:hover, .btn-cv-download:focus {
+      background-color: var(--accent3);
+      color: var(--dark-bg);
+    }
+    .btn-cv-download:hover svg,
+    .btn-cv-download:focus svg {
+      fill: var(--accent2);
+    }
+    section#contact {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    section#contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent3);
+    }
+    section#contact p {
+      font-size: 1.1rem;
+      margin-bottom: 1.7rem;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--nav-bg);
+      transition: box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(70,252,241,0.08);
+      border: 2px solid transparent;
+    }
+    .social-links a:hover, .social-links a:focus {
+      transform: scale(1.14);
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 20px rgba(70,252,241,0.17);
+      background: var(--dark-bg);
+    }
+    .social-links svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+    .github-icon { color: #181717; }
+    .linkedin-icon { color: #0077B5; }
+    .mail-icon { color: #EA4335; }
+    .twitter-icon { color: #1DA1F2; }
+    .instagram-icon { color: #E4405F; }
+    .whatsapp-icon { color: #25D366; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar-content" role="navigation" aria-label="Primary Navigation">
+      <div class="brand-area">
+        <!-- HS logo as SVG -->
+        <span class="logo-hs-svg">
+          <svg viewBox="0 0 48 48" fill="none">
+            <text x="2" y="36" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#fff">H</text>
+            <text x="20" y="36" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#66FCF1">S</text>
+          </svg>
+        </span>
+        <span class="brand-text">Harsh</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li>
+          <a href="#cv">
+            <svg class="cv-icon" viewBox="0 0 24 24">
+              <path d="M12 16.5l4-4h-3v-6h-2v6H8l4 4zm8-14H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-16c0-1.1-.9-2-2-2zm0 18H4v-16h16v16z"/>
+            </svg>
+            CV
+          </a>
+        </li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <img src="profile.jpg" alt="Harsh Sheth Profile Photo" class="profile-photo" onerror="this.onerror=null; this.src='https://i.pravatar.cc/180?img=12';" />
+    <h1 class="animated-name">Hi, I'm Harsh Sheth</h1>
+    <svg class="svg-underline" viewBox="0 0 200 24">
+      <path d="M10 20 Q 100 0 190 20" />
+    </svg>
+    <div class="subtitle-slide" id="subtitle-slide">
+      <span class="active">Full Stack Developer</span>
+      <span>MERN Stack Specialist</span>
+      <span>Web Enthusiast</span>
+      <span>Problem Solver</span>
+      <span>Cloud Learner</span>
+    </div>
+    <a href="#about" class="scroll-down" aria-label="Scroll to About section">&#x21E3;</a>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="about-photo">
+        <img src="profile.jpg" alt="Harsh Sheth Profile Photo" onerror="this.onerror=null; this.src='https://i.pravatar.cc/400?img=12';" />
+      </div>
+      <div class="about-content">
+        <h2>About Me</h2>
+        <p>Hello! I'm Harsh Sheth, a dedicated Full Stack Developer with expertise in the MERN stack (MongoDB, Express, React, Node.js). I am passionate about building robust, scalable, and user-friendly web applications that drive real-world impact.</p>
+        <p>My experience spans both frontend and backend development, allowing me to deliver complete solutions from concept to deployment. I am committed to continuous learning, always keeping up with the latest technologies and best practices in the industry.</p>
+        <p>I thrive in collaborative environments and enjoy working with teams to solve complex problems. My goal is to create efficient, secure, and accessible digital experiences that make a difference.</p>
+        <p>Currently, I am expanding my skills in cloud infrastructure, API design, and scalable system architectures to further enhance my ability to deliver high-quality solutions.</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Property Connect Hub</h3>
+          <p>A platform that connects property owners and seekers efficiently, streamlining the rental process.</p>
+          <a href="https://github.com/harsh-1106/property-connect-hub" target="_blank">View on GitHub</a>
+        </article>
+        <article class="project-card">
+          <h3>MAKE MY PG</h3>
+          <p>An application to find paying guest accommodations quickly and easily with user-friendly filters.</p>
+          <a href="https://github.com/harsh-1106/make-my-pg" target="_blank">View on GitHub</a>
+        </article>
+        <article class="project-card">
+          <h3>Travel Booking App</h3>
+          <p>A responsive travel booking platform featuring real-time search and booking options.</p>
+          <a href="https://github.com/harsh-1106/travel-booking-app" target="_blank">View on GitHub</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="cv">
+      <h2>Download My CV</h2>
+      <a href="HarshShethCV.pdf" class="btn-cv-download" download>
+        <svg viewBox="0 0 24 24">
+          <path d="M12 16.5l4-4h-3v-6h-2v6H8l4 4zm8-14H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-16c0-1.1-.9-2-2-2zm0 18H4v-16h16v16z"/>
+        </svg>
+        Download CV
+      </a>
+    </section>
+
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>Feel free to connect with me on these platforms:</p>
+      <div class="social-links">
+        <a href="https://github.com/harshsheth-dev" target="_blank" aria-label="GitHub">
+          <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.304.762-1.604-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 013.003-.404c1.018.005 2.045.138 3.003.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.625-5.475 5.921.43.372.823 1.104.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/harsh-sheth-dev" target="_blank" aria-label="LinkedIn">
+          <svg class="linkedin-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20.5h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76 0-.97.78-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.78 1.76-1.75 1.76zm15.25 12.27h-3v-5.6c0-1.33-.02-3.05-1.86-3.05-1.87 0-2.16 1.46-2.16 2.96v5.69h-3v-11h2.89v1.5h.04c.4-.76 1.37-1.56 2.82-1.56 3.02 0 3.58 1.99 3.58 4.58v6.48z"/></svg>
+        </a>
+        <a href="mailto:harshsheth1106v@gmail.com" aria-label="Email">
+          <svg class="mail-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 13.065l-11.99-8.065v16h23.98v-16zm11.99-9.065h-23.98l11.99 8.065z"/></svg>
+        </a>
+        <a href="https://twitter.com/harshshethdev" target="_blank" aria-label="Twitter">
+          <svg class="twitter-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 01-2.828.775 4.932 4.932 0 002.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 00-8.384 4.482c-4.086-.205-7.713-2.164-10.141-5.144a4.822 4.822 0 00-.666 2.475c0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 01-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 01-2.224.084c.627 1.956 2.444 3.377 4.6 3.417a9.867 9.867 0 01-6.102 2.104c-.396 0-.787-.023-1.175-.069a13.945 13.945 0 007.548 2.212c9.058 0 14.009-7.514 14.009-14.009 0-.213-.005-.425-.014-.636a10.025 10.025 0 002.457-2.548z"/></svg>
+        </a>
+        <a href="https://instagram.com/harshsheth.dev" target="_blank" aria-label="Instagram">
+          <svg class="instagram-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.012-4.947.072-1.276.06-2.687.336-3.662 1.311s-1.251 2.386-1.311 3.662c-.06 1.28-.072 1.688-.072 4.947s.012 3.667.072 4.947c.06 1.276.336 2.687 1.311 3.662s2.386 1.251 3.662 1.311c1.28.06 1.688.072 4.947.072s3.667-.012 4.947-.072c1.276-.06 2.687-.336 3.662-1.311s1.251-2.386 1.311-3.662c.06-1.28.072-1.688.072-4.947s-.012-3.667-.072-4.947c-.06-1.276-.336-2.687-1.311-3.662s-2.386-1.251-3.662-1.311c-1.28-.06-1.688-.072-4.947-.072zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp">
+          <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0012.001 0C5.373 0 0 5.373 0 12a11.95 11.95 0 001.671 6.07L0 24l6.134-1.613A11.92 11.92 0 0012 24c6.627 0 12-5.373 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22.1c-1.64 0-3.22-.32-4.68-.93l-.34-.14-3.64.96.97-3.54-.15-.36A9.98 9.98 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.47-7.6c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.29-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.41-1.5-.89-.79-1.49-1.77-1.66-2.07-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.67-1.62-.92-2.23-.24-.58-.49-.5-.67-.51-.17-.01-.36-.01-.56-.01s-.51.07-.78.36c-.27.29-1.04 1.01-1.04 2.46 0 1.44 1.07 2.84 1.22 3.04.15.2 2.11 3.23 5.12 4.4.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.41-.08-.13-.29-.21-.6-.36z"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Rotating subtitle slideshow (if present)
+    const slides = document.querySelectorAll('#subtitle-slide span');
+    let slideIdx = 0;
+    function showSlide(idx) {
+      slides.forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+    }
+    function nextSlide() {
+      slideIdx = (slideIdx + 1) % slides.length;
+      showSlide(slideIdx);
+    }
+    setInterval(nextSlide, 2300);
+    showSlide(slideIdx);
+
+    // Navbar active link effect (on click)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
